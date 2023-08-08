@@ -1,3 +1,5 @@
+import { Outlet } from 'react-router-dom'
+
 import {
   ApolloClient,
   InMemoryCache,
@@ -35,6 +37,7 @@ function App() {
         <h1 className="text-3xl font-bold underline">
           dotodo social
         </h1>
+        <Outlet />
       </ApolloProvider>
     </>
   )

@@ -7,7 +7,7 @@
     "install": "cd server && npm install && cd ../client && npm install",
     "dev": "concurrently \"cd server && npm run dev\" \"cd client && npm run dev\"",
     "build": "cd client && npm run build",
-    "deploy": "cd server && node server"
+    "start": "cd server && node server"
   },
   "keywords": [],
   "author": "",

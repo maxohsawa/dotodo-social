@@ -34,7 +34,7 @@ function App() {
   return (
     <>
       <ApolloProvider client={client}>
-        <h1 className="text-3xl font-bold underline">
+        <h1 className="text-3xl font-bold">
           dotodo social
         </h1>
         <Outlet />

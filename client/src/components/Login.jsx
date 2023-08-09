@@ -1,5 +1,10 @@
 import { useState } from 'react'
 
+import { useMutation } from '@apollo/client'
+import { LOGIN_USER } from '../utils/mutations'
+
+import Auth from '../utils/auth'
+
 import { 
   Button,
   ButtonGroup,
@@ -15,6 +20,8 @@ import {
 
 const Login = () => {
 
+  const [ login, { error, data } ] = useMutation(LOGIN_USER)
+
   const [ formState, setFormState ] = useState({
     email: '',
     password: ''
@@ -28,13 +35,21 @@ const Login = () => {
     })
   }
 
-  const handleLogin = (event) => {
-    console.log('login attempt with', formState)    
+  const handleLogin = async (event) => {
+    try {
+      const { data } = await login({
+        variables: { ...formState },
+      })
+
+      Auth.login(data.login.token)
+    } catch (error) {
+      console.error(error)
+    } 
   }
 
   return (
     <>
-      <Card maxW='sm'>
+      <Card minW='sm' maxW='md' m='6'>
         <CardBody>
           <Stack mt='6' spacing='3'>
             <Text fontSize='5xl'>Login</Text>

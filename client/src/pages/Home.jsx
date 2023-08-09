@@ -1,24 +1,47 @@
 import { useQuery } from '@apollo/client'
 import { QUERY_ME } from '../utils/queries'
 
-import { Container } from '@chakra-ui/react'
+import Auth from '../utils/auth'
+
+import { 
+  Button,
+  Flex,
+  Text,
+} from '@chakra-ui/react'
+
 import Login from '../components/Login'
 import SignUp from '../components/SignUp'
 
 const Home = () => {
 
   const { loading, data } = useQuery(QUERY_ME)
+  const me = data?.me || null
+
+  const handleLogout = () => {
+    Auth.logout()
+  }
 
   return (
     <>
       {loading && <div>loading...</div>}
-      {data && data.me && <div>{data.me.username}</div>}
-      {!data && (
+
+      {me ? (
         <>
-          <Container spacing={2}>
+          <Text fontSize='5xl'>
+            Welcome {data.me.username}!
+          </Text>
+          <Button
+            onClick={handleLogout}
+          >
+            Logout
+          </Button>
+        </>
+      ) : (
+        <>
+          <Flex justifyContent='center' flexWrap='wrap'>
             <Login />
             <SignUp />
-          </Container>
+          </Flex>
         </>
       )}
     </>

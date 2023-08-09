@@ -4,6 +4,7 @@ const db = require('./config/connection')
 
 const { ApolloServer } = require('@apollo/server')
 const { expressMiddleware } = require('@apollo/server/express4')
+const { ApolloServerPluginLandingPageDisabled } = require('@apollo/server/plugin/disabled')
 const { typeDefs, resolvers } = require('./schema')
 
 const { authMiddleware } = require('./utils/auth')
@@ -11,10 +12,14 @@ const { authMiddleware } = require('./utils/auth')
 const PORT = process.env.PORT || 3001
 const app = express()
 
-const server = new ApolloServer({
+const apolloServerComponents = {
   typeDefs,
-  resolvers,
-})
+  resolvers
+}
+
+apolloServerComponents.plugins = process.env.NODE_ENV === 'production' ? [ApolloServerPluginLandingPageDisabled()] : []
+
+const server = new ApolloServer(apolloServerComponents)
 
 const startApolloServer = async () => {
   

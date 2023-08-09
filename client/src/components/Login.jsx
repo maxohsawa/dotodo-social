@@ -1,7 +1,6 @@
 import { useState } from 'react'
 
 import { 
-  Box,
   Button,
   ButtonGroup,
   Card,
@@ -19,11 +18,6 @@ const Login = () => {
   const [ formState, setFormState ] = useState({
     email: '',
     password: ''
-  })
-
-  const [ errorState, setErrorState ] = useState( {
-    email: false,
-    password: false
   })
 
   const handleChange = (event) => {
@@ -54,7 +48,7 @@ const Login = () => {
                   onChange={handleChange}
                 />
               </FormControl>
-              <FormControl isInvalid={errorState.password}>
+              <FormControl>
                 <FormLabel>Password</FormLabel>
                 <Input 
                   type='password'

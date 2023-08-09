@@ -5,8 +5,6 @@ import { Container } from '@chakra-ui/react'
 import Login from '../components/Login'
 import SignUp from '../components/SignUp'
 
-import './Home.css'
-
 const Home = () => {
 
   const { loading, data } = useQuery(QUERY_ME)
@@ -17,7 +15,7 @@ const Home = () => {
       {data && data.me && <div>{data.me.username}</div>}
       {!data && (
         <>
-          <Container className='outlet-container'>
+          <Container spacing={2}>
             <Login />
             <SignUp />
           </Container>

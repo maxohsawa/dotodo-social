@@ -14,3 +14,11 @@
 - mongodb + mongoose
 - apollo server
 - JWT
+
+## roadmap
+- editable profile
+- todo list
+- friends
+- timeline
+- publishing
+- doots

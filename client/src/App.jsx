@@ -9,7 +9,9 @@ import {
 
 import { setContext } from '@apollo/client/link/context'
 
-import { ChakraProvider } from '@chakra-ui/react'
+import { ChakraProvider, Container } from '@chakra-ui/react'
+
+import Header from './components/Header'
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -37,10 +39,10 @@ function App() {
     <>
       <ApolloProvider client={client}>
         <ChakraProvider>
-          <h1 className="text-3xl font-bold">
-            dotodo social
-          </h1>
-          <Outlet />
+          <Container m={3} minW='95vw' minH='95vh'>
+            <Header />
+            <Outlet />
+          </Container>
 
         </ChakraProvider>
       </ApolloProvider>

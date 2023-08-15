@@ -9,6 +9,8 @@ import {
 
 import { setContext } from '@apollo/client/link/context'
 
+import { getCookie } from './utils/cookies'
+
 import { ChakraProvider, Container } from '@chakra-ui/react'
 
 import Header from './components/Header'
@@ -18,7 +20,7 @@ const httpLink = createHttpLink({
 })
 
 const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem('id_token');
+  const token = getCookie('id_token')
 
   return {
     headers: {
